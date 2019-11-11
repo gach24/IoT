@@ -1,0 +1,34 @@
+version: '3.1'
+services: 
+  php:
+    build: .
+    networks:
+      net:
+        aliases:
+          - php
+    ports: 
+      - "80:80"
+    container_name: php
+    hostname: php
+  db:
+    image: mysql:5.7
+    networks:
+      net:
+        aliases:
+          - db
+    ports:
+      - "3306:3306"
+    container_name: db
+    hostname: db
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_DATABASE: myapp
+networks:
+  net:
+    driver: bridge
+
+
