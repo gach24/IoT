@@ -27,8 +27,8 @@
         {
             // Sql sentence to extract from db
             $sql = "SELECT id, temperature, humidity, DATE_FORMAT(date,'%d-%M-%Y %h:%i:%s')
-                    FROM temperatures 
-                    WHERE date >= NOW() - INTERVAL 10 MINUTE";
+            FROM temperatures 
+            WHERE date >= (SELECT MAX(date) FROM temperatures)  - INTERVAL 10 MINUTE";
 
             // Execute query
             $result = mysqli_query($this->conn, $sql);
