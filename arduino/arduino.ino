@@ -43,7 +43,8 @@ void setup() {
    * Wifi connect
    */
   Serial.println("****** CONECTAR WIFI ******");
-  BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); // BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
+  // BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
+  BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
   // respuesta(); 
   delay(3000);
 
