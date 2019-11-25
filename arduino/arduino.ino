@@ -7,6 +7,7 @@
 const int DHTPin = 4; 
 const String server = "52.3.232.93";
 // const String server = "ec2-52-3-232-93.compute-1.amazonaws.com"; // String server = "sonofe.ddns.net";
+// const String server = "10.140.76.179"; // String server = "sonofe.ddns.net";
 // const String server = "127.0.0.1"; // String server = "sonofe.ddns.net";
 SoftwareSerial BT1(3, 2); // RX | TX
 DHT dht(DHTPin, DHTTYPE);
@@ -43,10 +44,15 @@ void setup() {
    * Wifi connect
    */
   Serial.println("****** CONECTAR WIFI ******");
+
   BT1.println("AT+CWJAP=\"AndroidAP\",\"gandalfelgris\""); 
   // BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
   // BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
   // respuesta(); 
+
+  // BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
+  // BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
+  respuesta(); 
   delay(3000);
 
   /*
@@ -54,7 +60,7 @@ void setup() {
    */
   Serial.println("****** COMPROBAR IP ASIGNADA ******");
   BT1.println("AT+CIFSR");
-  // respuesta();
+  respuesta();
   delay(500);
 
   /**
@@ -94,6 +100,10 @@ void loop() {
   peticionHTTP = peticionHTTP + "Host: " + server + "\r\n\r\n"; 
   // peticionHTTP = peticionHTTP + "Host: 10.140.76.179\r\n\r\n"; 
   // peticionHTTP = peticionHTTP + "Host: sonofe.ddns.net\r\n\r\n";
+
+//  String peticionHTTP = "GET /temperatures/insert.php?temperature=" + String(temperatura) + "&humidity=" + String(humedad) + " HTTP/1.1\r\n";
+//  peticionHTTP = peticionHTTP + "Host: 52.3.232.93\r\n\r\n"; // peticionHTTP = peticionHTTP + "Host: sonofe.ddns.net\r\n\r\n";
+
 
   /**
    * ENVIO DEL TAMAÑO DEL MENSAJE (PETICIÓN GET)
@@ -150,7 +160,6 @@ void loop() {
     */
  
 }
-
 
 
 void respuesta() {
