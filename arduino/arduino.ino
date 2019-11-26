@@ -7,7 +7,7 @@
 const int DHTPin = 4; 
 const String server = "52.3.232.93"; // String server = "sonofe.ddns.net";
 // const String server = "10.140.76.179"; // String server = "sonofe.ddns.net";
-// const String server = "127.0.0.1"; // String server = "sonofe.ddns.net";
+
 SoftwareSerial BT1(3, 2); // RX | TX
 DHT dht(DHTPin, DHTTYPE);
 
@@ -89,8 +89,9 @@ void loop() {
    * Componemos mensaje para enviar a server 
    */
   String peticionHTTP = "GET /insert.php?temperature=" + String(temperatura) + "&humidity=" + String(humedad) + " HTTP/1.1\r\n";
-  peticionHTTP = peticionHTTP + "Host: 52.3.232.93\r\n\r\n"; // peticionHTTP = peticionHTTP + "Host: sonofe.ddns.net\r\n\r\n";
+  peticionHTTP = peticionHTTP + "Host: " + server + "\r\n\r\n";
 
+  
   /**
    * Wifi: Envió tamaño del comando
    */
