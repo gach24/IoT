@@ -5,8 +5,8 @@
 #define DHTTYPE DHT22
 
 const int DHTPin = 4; 
-const String server = "52.3.232.93";
-// const String server = "ec2-52-3-232-93.compute-1.amazonaws.com"; // String server = "sonofe.ddns.net";
+const String server = "52.3.232.93"; // String server = "sonofe.ddns.net";
+// const String server = "10.140.76.179"; // String server = "sonofe.ddns.net";
 // const String server = "127.0.0.1"; // String server = "sonofe.ddns.net";
 SoftwareSerial BT1(3, 2); // RX | TX
 DHT dht(DHTPin, DHTTYPE);
@@ -43,9 +43,13 @@ void setup() {
    * Wifi connect
    */
   Serial.println("****** CONECTAR WIFI ******");
-  BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
-  // BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
+  // BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
+  BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
   // respuesta(); 
+
+  // BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
+  // BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\"");
+  respuesta(); 
   delay(3000);
 
   /*
@@ -81,8 +85,7 @@ void loop() {
    */
   Serial.println("****** CONEXIÓN TCP CON EL SERVIDOR *******");
   BT1.println("AT+CIPSTART=\"TCP\",\"" + server + "\",80"); 
- 
-  // respuesta();
+  respuesta();
   delay(1000);
 
   
@@ -90,32 +93,55 @@ void loop() {
    * Componemos mensaje para enviar a server 
    */
   String peticionHTTP = "GET /insert.php?temperature=" + String(temperatura) + "&humidity=" + String(humedad) + " HTTP/1.1\r\n";
-  peticionHTTP = peticionHTTP + "Host: " + server + "\r\n\r\n"; 
-  // peticionHTTP = peticionHTTP + "Host: 10.140.76.179\r\n\r\n"; 
-  // peticionHTTP = peticionHTTP + "Host: sonofe.ddns.net\r\n\r\n";
+  peticionHTTP = peticionHTTP + "Host: 52.3.232.93\r\n\r\n"; // peticionHTTP = peticionHTTP + "Host: sonofe.ddns.net\r\n\r\n";
+
+//  String peticionHTTP = "GET /temperatures/insert.php?temperature=" + String(temperatura) + "&humidity=" + String(humedad) + " HTTP/1.1\r\n";
+//  peticionHTTP = peticionHTTP + "Host: 52.3.232.93\r\n\r\n"; // peticionHTTP = peticionHTTP + "Host: sonofe.ddns.net\r\n\r\n";
+
 
   /**
-   * Wifi: Envió tamaño del comando
+   * ENVIO DEL TAMAÑO DEL MENSAJE (PETICIÓN GET)
    */
   BT1.print("AT+CIPSEND=");
   BT1.println(peticionHTTP.length());
+  /**
+   * LOG: IMPORIMIMOS POR PANTALLA EL TAMAÑO DE LA PETICIÓN
+   */
   Serial.print("AT+CIPSEND=");
   Serial.println(peticionHTTP.length());
 
-  delay(1000);
+  /* 
+   * ENVIAMOS LA PETICIÓN GET HTTP
+   */
+  BT1.println(peticionHTTP);
+  /* 
+   * IMPIRMIMOS POR MONITOR SERIE LA PETICIÓN GET HTTP
+   */
+  Serial.println("PETICION ENVIADA: " + peticionHTTP);
+  if (BT1.find("OK"))
+    Serial.println("Petición procesada!!!");
+  else
+    Serial.println("Petición NO procesada!!!");
+  /**
+   * ESPERAMOS 5 SEGUNDOS HASTA LA SIGUIENTE PETICIÓN
+   */
+  delay(5000);
+
+    
   // respuesta();
   /**
    * Si recibimos respuesta positiva
-   */
-  // if (BT1.find(">"))
-  // {
+  if (BT1.find(">"))
+  {
       // Enviamos petición GET http
       BT1.println(peticionHTTP);
       
       Serial.println("PETICION ENVIADA: " + peticionHTTP);
 
       delay(1000);     
+      // respuesta();
        // Si petición correcta  
+      /*
       if( BT1.find("SEND OK"))
       {   
           Serial.println("Peticion HTTP enviada");  
@@ -123,10 +149,12 @@ void loop() {
       else
       {
           Serial.println("No se ha podido enviar HTTP.....");
-      }           
- //   }
-   // delay(2000);
+      }  
+    }         
+    */
+ 
 }
+
 
 
 
