@@ -5,8 +5,8 @@
 #define DHTTYPE DHT22
 
 const int DHTPin = 4; 
-const String server = "52.3.232.93"; // String server = "sonofe.ddns.net";
-// const String server = "10.140.76.179"; // String server = "sonofe.ddns.net";
+const String server = "ec2-52-3-232-93.compute-1.amazonaws.com"; // server = "52.3.232.93"; 
+
 
 SoftwareSerial BT1(3, 2); // RX | TX
 DHT dht(DHTPin, DHTTYPE);
@@ -88,8 +88,9 @@ void loop() {
   /*
    * Componemos mensaje para enviar a server 
    */
-  String peticionHTTP = "GET /insert.php?temperature=" + String(temperatura) + "&humidity=" + String(humedad) + " HTTP/1.1\r\n";
-  peticionHTTP = peticionHTTP + "Host: " + server + "\r\n\r\n";
+  String peticionHTTP = "GET /insert.php?temperature=" + String(temperatura) 
+                      + "&humidity=" + String(humedad) + " HTTP/1.1\r\n"
+                      + "Host: " + server + "\r\n\r\n";
 
   
   /**
