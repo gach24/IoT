@@ -3,7 +3,7 @@
 #include <SoftwareSerial.h>
 
 #define DHTTYPE DHT22
-#define DEBUG(a, b) for (int index = 0; index < b; index++) Serial.print(a[index]); Serial.println();
+
 
 const int DHTPin = 4; 
 const String server = "ec2-52-3-232-93.compute-1.amazonaws.com"; // server = "52.3.232.93"; 
@@ -43,8 +43,9 @@ void setup() {
    * Wifi connect
    */
   Serial.println("****** CONECTAR WIFI ******");
-  // BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
-  BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\""); // respuesta(); 
+  BT1.println("AT+CWJAP=\"TECNOLOGIA\",\"tecnologia4321\""); 
+  // BT1.println("AT+CWJAP=\"dpto_informatica\",\"wHtoxrHM\""); // respuesta(); 
+  
   delay(3000);
 
   /*
@@ -122,24 +123,14 @@ void loop() {
       Serial.println("Petición no procesada en el servicor.....");
    }           
    */  
+   delay(10000);
 }
 
 
 
 void printBT() {
-  /**
-  String text;
-
-  while (BT1.available() == 0) {
-    //nada
-  }
-  while (BT1.available()) {
-    text = BT1.readString();
-    Serial.println(text);
-  }
-  */
    String data = "";
-   while (BT1.available() && data.indexOf("OK") < 0)
+   while (BT1.available())
    {
       data = BT1.readStringUntil('\n');
       Serial.println(data);
