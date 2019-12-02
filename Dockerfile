@@ -1,7 +1,5 @@
-FROM php:7.2-apache
+FROM node:12
 # MAINTAINER Germán Carreño <german@docencia.sonofe.es>
-RUN docker-php-ext-install mysqli
 
-ADD --chown=www-data:www-data src/ /var/www/html/
 
 
