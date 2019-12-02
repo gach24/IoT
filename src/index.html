@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="refresh" content="60">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Graphics</title>
+</head>
+
+<body>
+    <main class="container">
+        <div class="row">
+            <nav class="col offset-2">
+                <div class="nav nav-tabs row" id="nav-tab" role="tablist">
+                    <a  id="nav-home-tab" class="nav-item nav-link active col-2"  
+                        data-toggle="tab" href="#nav-home"  role="tab" aria-controls="nav-home" aria-selected="true" numero="0">10minutos</a>
+                    <a  id="nav-profile-tab" class="nav-item nav-link col-2"
+                        data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" numero="1">1hora</a>
+                    <a  id="nav-contact-tab" class="nav-item nav-link col-2" data-toggle="tab"                  href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"        numero="2">12horas</a>
+                    <a  id="nav-contact-tab" class="nav-item nav-link col-2" data-toggle="tab"                 href="#nav-contact"  role="tab" aria-controls="nav-contact" aria-selected="false"       numero="3">diaria</a>
+                    <a  id="nav-contact-tab" class="nav-item nav-link col-2" data-toggle="tab"                  href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"        numero="4">mensual</a>
+                    <a  id="nav-contact-tab" class="nav-item nav-link col-2"  data-toggle="tab"                 href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"        numero="5">anual</a>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-8 offset-2 ">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div id="lastTenMinutesValues">
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div id="lastHourValues" class="img">
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div id="twelveHours" class="img">
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div id="daily" class="img">
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div id="mounthly" class="img">
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div id="annual" class="img">
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>
