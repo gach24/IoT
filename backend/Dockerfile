@@ -3,13 +3,12 @@ FROM node:12.13.1-stretch
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
 
 RUN npm install
 RUN npm install express --save
 
 # Bundle app source
-COPY src/backend/* .
+COPY src/* .
 
 EXPOSE 8080
 

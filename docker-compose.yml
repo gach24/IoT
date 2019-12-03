@@ -25,15 +25,15 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
   web: 
-    image: httpd
+    build: './frontend'
     networks:
       net:
         aliases:
           - web    
     ports: 
       - "80:80" 
-    container_name: node
-    hostname: node         
+    container_name: web
+    hostname: web    
 networks:
   net:
     driver: bridge

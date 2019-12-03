@@ -5,9 +5,8 @@ WORKDIR /usr/local/apache2/htdocs/
 
 COPY src/* .
 
-EXPOSE 8080
+EXPOSE 80
 
-CMD [ "node", "server.js" ]
 
 
 
