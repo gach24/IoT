@@ -23,7 +23,9 @@ services:
     hostname: db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 
+      MONGO_INITDB_ROOT_PASSWORD: root
+  web: 
+    
 networks:
   net:
     driver: bridge
