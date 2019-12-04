@@ -24,6 +24,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: temperatures
+    volumes:
+      - ./backend/mongo-dump:/docker-entrypoint-initdb.d
+    
   web: 
     build: './frontend'
     networks:
