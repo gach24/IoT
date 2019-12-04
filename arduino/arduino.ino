@@ -6,7 +6,7 @@
 
 
 const int DHTPin = 4; 
-const String server = "ec2-52-3-232-93.compute-1.amazonaws.com"; // server = "52.3.232.93"; 
+const String server = "ec2-54-236-36-170.compute-1.amazonaws.com"; // server = "52.3.232.93"; 
 
 
 SoftwareSerial BT1(3, 2); // RX | TX
