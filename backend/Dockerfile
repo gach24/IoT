@@ -4,11 +4,9 @@ FROM node:12.13.1-stretch
 WORKDIR /usr/src/app
 
 
-RUN npm install
-RUN npm install express --save
+COPY src/* ./
 
-# Bundle app source
-COPY src/* .
+RUN npm install
 
 EXPOSE 8080
 
