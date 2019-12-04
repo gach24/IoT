@@ -18,4 +18,4 @@ app.get('/', (req, res) => {
  * app.listen(PORT, HOST, () => console.log('Express listening on port 3000 ...'));
  */
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+console.log('Running on: \x1b[42m%s\x1b[0m', `http://${HOST}:${PORT}`);
