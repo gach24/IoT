@@ -5,17 +5,38 @@ const PORT_EXPRESS        = '8080';
 const HOST_EXPRESS        = '0.0.0.0';
 const PORT_MONGO          = '27017';
 const HOST_MONGO          = 'db';
-const DB_MONGO            = 'temperatures'
+const DB_MONGO            = 'datadb'
 
 
 
 const express   = require('express');
 const mongoose  = require('mongoose');
 
+var dataSchema = new mongoose.Schema({
+  temperature: { 
+    type: Number, 
+    required: [true, "Temperature is necesary"] 
+  },
+  humidity: {
+    type: Number, 
+    required: [true, "Humidity is necesary"] 
+  },
+  created: {
+    type: Date, 
+    required: true,
+    default: Date.now
+  }
+});
+
+var Data = mongoose.model('Data', dataSchema);
+
 
 // App
 const app = express();
+
+
 app.get('/', (req, res, next) => {
+
   res.status(200).json({
     ok: true,
     msg: 'Hello world'
