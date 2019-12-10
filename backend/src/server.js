@@ -43,18 +43,26 @@ app.get('/', (req, res, next) => {
   });
 });
 
+
+
+
+/**
+ * Necesario ya que el contenedor de mongo, tarda unos segundos en estar disponible, por lo que se retrasa la conexión 5 segundos
+ */
 setTimeout(function() {
-  mongoose.connect(`mongodb://dev:dev@${ HOST_MONGO }:${ PORT_MONGO }/${ DB_MONGO }`, {useNewUrlParser: true})
+  var mongoConnectionString = `mongodb://dev:dev@${ HOST_MONGO }:${ PORT_MONGO }/${ DB_MONGO }`;
+  mongoose.connect(mongoConnectionString, {useNewUrlParser: true})
     .then(
       () => {
-        console.log('Running mongodb on: \x1b[42m%s\x1b[0m', `mongodb://dev:dev@${ HOST_MONGO }:${ PORT_MONGO }/${ DB_MONGO }`);
-      
+        console.log('Running mongodb on: \x1b[42m%s\x1b[0m', mongoConnectionString);
+
+        var expressListenString = `http://${HOST_EXPRESS}:${PORT_EXPRESS}`;      
         app.listen(PORT_EXPRESS, HOST_EXPRESS, () => {
-          console.log('Running express on: \x1b[42m%s\x1b[0m', `http://${HOST_EXPRESS}:${PORT_EXPRESS}`);
+          console.log('Running express on: \x1b[42m%s\x1b[0m', expressListenString);
         });
       },
       err => { throw err }
   );
-}, 10000);
+}, 5000);
 
 
