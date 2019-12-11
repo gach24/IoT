@@ -34,19 +34,34 @@ var Measure = mongoose.model('Measure', dataSchema);
 // App
 const app = express();
 
+app.get('/insert', (req, res, next) => {
+
+  let t = Number(req.query.temperature) || 0;
+  let h = Number(req.query.humidity) || 0;
+
+  let measure = new Measure({ temperature: t, humidity: h });
+
+  measure.save()
+    .then(newMeasure => res.status(200).json({ok: true, new: newMeasure}))
+    .catch(err => res.status(500).json({ok: false, message: "No se ha podido insertar en la base de datos" }));
+
+
+  /*
+  res.status(200).json({
+    ok: true,
+    msg: `La temperatura es ${temperature} y la humedad es ${humitity}`
+  });
+  */
+
+});
+
 
 app.get('/', (req, res, next) => {
 
   Measure.find({}).exec()
     .then(data => res.status(200).json({ok: true, measures: data }))
-    .catch(err => res.status(200).json({ok: false, message: "No se ha podido conectar a la base de datos" }));
+    .catch(err => res.status(500).json({ok: false, message: "No se ha podido conectar a la base de datos" }));
 
-  /*
-  res.status(200).json({
-    ok: true,
-    msg: 'Hello world'
-  });
-  */
 });
 
 
