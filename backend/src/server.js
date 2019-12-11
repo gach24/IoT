@@ -28,7 +28,7 @@ var dataSchema = new mongoose.Schema({
   }
 });
 
-var Data = mongoose.model('Data', dataSchema);
+var Measure = mongoose.model('Measure', dataSchema);
 
 
 // App
@@ -37,10 +37,16 @@ const app = express();
 
 app.get('/', (req, res, next) => {
 
+  Measure.find({}).exec()
+    .then(data => res.status(200).json({ok: true, measures: data }))
+    .catch(err => res.status(200).json({ok: false, message: "No se ha podido conectar a la base de datos" }));
+
+  /*
   res.status(200).json({
     ok: true,
     msg: 'Hello world'
   });
+  */
 });
 
 
