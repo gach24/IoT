@@ -83,7 +83,14 @@
                     crossDomain: true,
                     dataType: 'json',
                     success: function(result){
-                        console.log(result);
+                        // var obj = JSON.parse(result);
+                        // console.log(result);
+                        const measures      = result.measures.map( obj => obj.temperature );
+                        const humidities    = result.measures.map( obj => obj.humidity );
+                        const dates         = result.measures.map( obj => obj.created );
+                        console.log(measures);
+                        console.log(humidities);
+                        console.log(dates);
                     },
                     error: function (xhr, status) {
                         alert("error");
