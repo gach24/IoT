@@ -91,12 +91,20 @@
                         console.log(measures);
                         console.log(humidities);
                         console.log(dates);
+
+                        var data = [{
+                            x: dates,
+                            y: measures,
+                            type: 'scatter'
+                        }];
+
+                        Plotly.newPlot('lastTenMinutesValues', data);
                     },
                     error: function (xhr, status) {
                         alert("error");
                     }
                 });
-            }, 2000);
+            }, 30000);
         });
         
 /*
