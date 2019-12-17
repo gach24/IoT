@@ -73,10 +73,8 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
 
-        $(function() {
-            console.log("Aplicación iniciada");
-            setInterval(() => {
-                var url = 'http://ec2-54-236-36-170.compute-1.amazonaws.com:8080';
+        var callExpress = () =>  {
+                var url = 'http://ec2-3-231-29-74.compute-1.amazonaws.com:8080';
                 $.ajax({
                     url: url,
                     contentType: "application/json",
@@ -104,8 +102,15 @@
                         alert("error");
                     }
                 });
-            }, 30000);
+            };
+
+        $(function() {
+            console.log("Aplicación iniciada");
+            // setTcallApiRest();
+            setInterval(callExpress, 5000);
         });
+
+        
         
 /*
              $.ajax({
