@@ -83,18 +83,31 @@
                     success: function(result){
                         // var obj = JSON.parse(result);
                         // console.log(result);
-                        const measures      = result.measures.map( obj => obj.temperature );
+                        const temperatures  = result.measures.map( obj => obj.temperature );
                         const humidities    = result.measures.map( obj => obj.humidity );
                         const dates         = result.measures.map( obj => obj.created );
-                        console.log(measures);
+                        console.log(temperatures);
                         console.log(humidities);
                         console.log(dates);
 
-                        var data = [{
+                        var trace1 = {
+                            type: 'scatter',
+                            mode: 'lines',
                             x: dates,
-                            y: measures,
-                            type: 'scatter'
-                        }];
+                            y: temperatures,
+                            line: {color: '#17BECF'}
+                        }
+
+                        var trace2 = {
+                            type: 'scatter',
+                            mode: 'lines',
+                            x: dates,
+                            y: humidities,
+                            line: {color: '#7F7F7F'}
+                        }
+
+
+                        var data = [trace1, trace2];
 
                         Plotly.newPlot('lastTenMinutesValues', data);
                     },
