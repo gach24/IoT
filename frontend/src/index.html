@@ -85,30 +85,44 @@
                         const temperatures  = result.measures.map( obj => obj.temperature );
                         const humidities    = result.measures.map( obj => obj.humidity );
                         const dates         = result.measures.map( obj => obj.created );
-                        console.log(temperatures);
-                        console.log(humidities);
-                        console.log(dates);
+                        var first           = dates[0];
+                        var last            = dates[dates.length - 1];
 
-                        var trace1 = {
+
+                        var temperaturesTrace = {
                             type: 'scatter',
                             mode: 'lines',
+                            name: 'Temperatures',
                             x: dates,
                             y: temperatures,
                             line: {color: '#17BECF'}
                         }
 
-                        var trace2 = {
+                        var humiditiesTrace = {
                             type: 'scatter',
                             mode: 'lines',
+                            name: 'Humidities',
                             x: dates,
                             y: humidities,
                             line: {color: '#7F7F7F'}
                         }
 
+                        var layout = {
+                            title: '10 MINUTOS',
+                            xaxis: {
+                                range: [first, last],
+                                type: 'date'
+                            },
+                            yaxis: {
+                              //   autorange: true,
+                                range: [0, 100],
+                                type: 'linear'
+                            }
+                        }
 
-                        var data = [trace1, trace2];
+                        var data = [temperaturesTrace, humiditiesTrace];
 
-                        Plotly.newPlot('lastTenMinutesValues', data);
+                        Plotly.newPlot('lastTenMinutesValues', data, layout);
                     },
                     error: function (xhr, status) {
                         alert("error");
