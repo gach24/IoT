@@ -81,14 +81,14 @@ void loop() {
    * WIFI: conexión con el servidor
    */
   Serial.println("****** CONEXIÓN TCP CON EL SERVIDOR *******");
-  BT1.println("AT+CIPSTART=\"TCP\",\"" + server + "\",8080"); 
+  BT1.println("AT+CIPSTART=\"TCP\",\"" + server + "\",80"); 
   // respuesta();
   delay(1000);
     
   /*
    * Componemos mensaje para enviar a server 
    */
-  String peticionHTTP = "GET /insert?temperature=" + String(temperatura) 
+  String peticionHTTP = "GET /insert.php?temperature=" + String(temperatura) 
                       + "&humidity=" + String(humedad) + " HTTP/1.1\r\n"
                       + "Host: " + server + "\r\n\r\n";
 
