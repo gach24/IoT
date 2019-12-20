@@ -63,6 +63,13 @@ app.get('/insert', (req, res, next) => {
     .catch(err => res.status(500).json({ok: false, message: "No se ha podido insertar en la base de datos" }));
 });
 
+app.get('/minutes', (req, res, next) => {
+  let time = new Date(Date.now() - 1000 * 60 * 10);
+  Measure.find({ created: {$gte: time}}).exec()
+    .then(data => res.status(200).json({ok: true, measures: data}))
+    .catch(err => res.status(500).json({ok: false, message: "No se ha podido conectar a la base de datos" }));
+});
+
 
 app.get('/',  (req, res, next) => {
 
