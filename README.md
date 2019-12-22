@@ -6,7 +6,7 @@ Los datos registrados serán transmitidos por la red a un servidor nodejs que se
 ## Requisitos 
 Es necesaria la instalación de [docker](https://docs.docker.com/install/) y [docker-compose](https://docs.docker.com/compose/install/)
 
-## Puesta en marca
+## Puesta en marcha
 Una vez clonado el proyecto, situarse en el directorio raiz del mismo
 
 Pasos:
@@ -21,5 +21,8 @@ docker-compose up -d
 ```
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d57f2a71cc8b8082153d0b95ef72759a41ab9ac1
