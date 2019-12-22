@@ -11,18 +11,15 @@ Una vez clonado el proyecto, situarse en el directorio raiz del mismo
 
 Pasos:
 1. Creación del volumen para la persistencia de los datos de mongo
-```bash
+```console
 docker volume create mongo-volume
 ```
 
 2. Arrancar los contenedores
-```
+```console
 docker-compose up -d
 ```
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> d57f2a71cc8b8082153d0b95ef72759a41ab9ac1
