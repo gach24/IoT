@@ -123,7 +123,7 @@ void loop() {
       Serial.println("Petición no procesada en el servicor.....");
    }           
    */  
-   delay(10000);
+   delay(900000);
 }
 
 
