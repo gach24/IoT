@@ -6,7 +6,7 @@
 
 
 const int DHTPin = 4; 
-const String server = "ec2-54-236-36-170.compute-1.amazonaws.com"; // server = "52.3.232.93"; 
+const String server = "ec2-34-237-124-235.compute-1.amazonaws.com"; // server = "52.3.232.93"; 
 
 
 SoftwareSerial BT1(3, 2); // RX | TX
@@ -81,14 +81,14 @@ void loop() {
    * WIFI: conexión con el servidor
    */
   Serial.println("****** CONEXIÓN TCP CON EL SERVIDOR *******");
-  BT1.println("AT+CIPSTART=\"TCP\",\"" + server + "\",80"); 
+  BT1.println("AT+CIPSTART=\"TCP\",\"" + server + "\",8080"); 
   // respuesta();
   delay(1000);
     
   /*
    * Componemos mensaje para enviar a server 
    */
-  String peticionHTTP = "GET /insert.php?temperature=" + String(temperatura) 
+  String peticionHTTP = "GET /insert?temperature=" + String(temperatura) 
                       + "&humidity=" + String(humedad) + " HTTP/1.1\r\n"
                       + "Host: " + server + "\r\n\r\n";
 

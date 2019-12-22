@@ -1,32 +1,58 @@
-version: '3.1'
+version: '3.7'
+
+
+volumes:
+    mongo-volume:
+      external:
+        name: mongo-volume
+
 services: 
-  php:
-    build: .
-    networks:
-      net:
-        aliases:
-          - php
-    ports: 
-      - "80:80"
-    container_name: php
-    hostname: php
   db:
-    image: mysql:5.7
+    image: mongo:4.0
+    restart: always
     networks:
       net:
         aliases:
           - db
     ports:
-      - "3306:3306"
+      - "27017:27017"
     container_name: db
     hostname: db
-    volumes:
-      - ./mysql-dump:/docker-entrypoint-initdb.d
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: dev
-      MYSQL_PASSWORD: dev
-      MYSQL_DATABASE: myapp
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: datadb
+    volumes:
+      - ./backend/mongo-dump:/docker-entrypoint-initdb.d
+      - mongo-volume:/data/db
+  node:
+    build: './backend'
+    networks:
+      net:
+        aliases:
+          - node
+    ports: 
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
+    container_name: node
+    hostname: node
+  web: 
+    build: './frontend'
+    restart: always
+    networks:
+      net:
+        aliases:
+          - web    
+    ports: 
+      - "80:80" 
+    depends_on:
+      - node
+    container_name: web
+    hostname: web   
+
+
 networks:
   net:
     driver: bridge
