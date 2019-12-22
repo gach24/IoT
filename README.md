@@ -20,6 +20,11 @@ docker volume create mongo-volume
 docker-compose up -d
 ```
 
+## Arquitectura
+En la siguiente imagen se puede ver la arquitectura del proyecto
+
+![Imagen arquitectura](./doc/img/diagram.png)
+
 
 
 
