@@ -6,4 +6,20 @@ Los datos registrados serán transmitidos por la red a un servidor nodejs que se
 ## Requisitos 
 Es necesaria la instalación de [docker](https://docs.docker.com/install/) y [docker-compose](https://docs.docker.com/compose/install/)
 
-### Puesta 
+## Puesta en marca
+Una vez clonado el proyecto, situarse en el directorio raiz del mismo
+
+Pasos:
+1. Creación del volumen para la persistencia de los datos de mongo
+```bash
+docker volume create mongo-volume
+```
+
+2. Arrancar los contenedores
+```
+docker-compose up -d
+```
+
+
+
+
