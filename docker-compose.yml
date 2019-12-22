@@ -40,6 +40,7 @@ services:
     hostname: node
   web: 
     build: './frontend'
+    restart: always
     networks:
       net:
         aliases:
